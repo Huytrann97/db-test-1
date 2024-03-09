@@ -1,0 +1,1651 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "4b407dd1-6cdd-4f14-ad9e-a548388dbb8d",
+  "prevId": "d872c32d-0bca-4a15-8dd9-d9586d3350b3",
+  "tables": {
+    "agency_accounts": {
+      "name": "agency_accounts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hash": {
+          "name": "hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "first_name_kana": {
+          "name": "first_name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_name_kana": {
+          "name": "last_name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phone_number": {
+          "name": "phone_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "department": {
+          "name": "department",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_representative": {
+          "name": "is_representative",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "agency_accounts_agency_id_agencies_id_fk": {
+          "name": "agency_accounts_agency_id_agencies_id_fk",
+          "tableFrom": "agency_accounts",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "bank_accounts": {
+      "name": "bank_accounts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bank_name": {
+          "name": "bank_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "branch": {
+          "name": "branch",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "account_number": {
+          "name": "account_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "account_name": {
+          "name": "account_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "classification": {
+          "name": "classification",
+          "type": "bank_classification",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "bank_accounts_agency_id_agencies_id_fk": {
+          "name": "bank_accounts_agency_id_agencies_id_fk",
+          "tableFrom": "bank_accounts",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "gtn_in_charges": {
+      "name": "gtn_in_charges",
+      "schema": "",
+      "columns": {
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gtn_member_id": {
+          "name": "gtn_member_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "gtn_in_charges_agency_id_agencies_id_fk": {
+          "name": "gtn_in_charges_agency_id_agencies_id_fk",
+          "tableFrom": "gtn_in_charges",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "gtn_in_charges_gtn_member_id_gtn_members_id_fk": {
+          "name": "gtn_in_charges_gtn_member_id_gtn_members_id_fk",
+          "tableFrom": "gtn_in_charges",
+          "tableTo": "gtn_members",
+          "columnsFrom": [
+            "gtn_member_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "gtn_in_charges_gtn_member_id_agency_id": {
+          "name": "gtn_in_charges_gtn_member_id_agency_id",
+          "columns": [
+            "gtn_member_id",
+            "agency_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "agencies": {
+      "name": "agencies",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name_kana": {
+          "name": "name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phone_number": {
+          "name": "phone_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zip_code": {
+          "name": "zip_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "prefecture": {
+          "name": "prefecture",
+          "type": "prefecture",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address_detail": {
+          "name": "address_detail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "building": {
+          "name": "building",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "room_number": {
+          "name": "room_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "anti_social_check": {
+          "name": "anti_social_check",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "invoice_number": {
+          "name": "invoice_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "service_type_codes": {
+          "name": "service_type_codes",
+          "type": "service_type[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "addresses": {
+      "name": "addresses",
+      "schema": "",
+      "columns": {
+        "applicant_id": {
+          "name": "applicant_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "postal_code": {
+          "name": "postal_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "prefecture": {
+          "name": "prefecture",
+          "type": "prefecture",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address_detail": {
+          "name": "address_detail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "building": {
+          "name": "building",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "room_number": {
+          "name": "room_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "addresses_applicant_id_applicants_id_fk": {
+          "name": "addresses_applicant_id_applicants_id_fk",
+          "tableFrom": "addresses",
+          "tableTo": "applicants",
+          "columnsFrom": [
+            "applicant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "applicants": {
+      "name": "applicants",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_name_kana": {
+          "name": "first_name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name_kana": {
+          "name": "last_name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "birthdate": {
+          "name": "birthdate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nationality": {
+          "name": "nationality",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visa_classification": {
+          "name": "visa_classification",
+          "type": "visa_category",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "desired_language_code": {
+          "name": "desired_language_code",
+          "type": "language",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phone_number": {
+          "name": "phone_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "correspondences": {
+      "name": "correspondences",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "application_id": {
+          "name": "application_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "destination_type_code": {
+          "name": "destination_type_code",
+          "type": "correspondence_destination_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email_sent_at": {
+          "name": "email_sent_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "correspondences_application_id_applications_id_fk": {
+          "name": "correspondences_application_id_applications_id_fk",
+          "tableFrom": "correspondences",
+          "tableTo": "applications",
+          "columnsFrom": [
+            "application_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "credit_card_applications": {
+      "name": "credit_card_applications",
+      "schema": "",
+      "columns": {
+        "application_id": {
+          "name": "application_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "credit_card_application_status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'not_handle'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "credit_card_application_id_idx": {
+          "name": "credit_card_application_id_idx",
+          "columns": [
+            "application_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "credit_card_applications_application_id_applications_id_fk": {
+          "name": "credit_card_applications_application_id_applications_id_fk",
+          "tableFrom": "credit_card_applications",
+          "tableTo": "applications",
+          "columnsFrom": [
+            "application_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "applications": {
+      "name": "applications",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applicant_id": {
+          "name": "applicant_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "service_type_codes": {
+          "name": "service_type_codes",
+          "type": "service_type[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "complete_at": {
+          "name": "complete_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "applications_agency_id_agencies_id_fk": {
+          "name": "applications_agency_id_agencies_id_fk",
+          "tableFrom": "applications",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "applications_applicant_id_applicants_id_fk": {
+          "name": "applications_applicant_id_applicants_id_fk",
+          "tableFrom": "applications",
+          "tableTo": "applicants",
+          "columnsFrom": [
+            "applicant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "utility_applications": {
+      "name": "utility_applications",
+      "schema": "",
+      "columns": {
+        "application_id": {
+          "name": "application_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "utility_company_id": {
+          "name": "utility_company_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "utility_type_code": {
+          "name": "utility_type_code",
+          "type": "utility_type",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "current_contract_type_codes": {
+          "name": "current_contract_type_codes",
+          "type": "utility_contract_type[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "electric_start_date": {
+          "name": "electric_start_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gas_start_date": {
+          "name": "gas_start_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gas_start_time_code": {
+          "name": "gas_start_time_code",
+          "type": "gas_start_time_type",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "with_water_supply": {
+          "name": "with_water_supply",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "utility_application_status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'not_handle'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "utility_application_id_idx": {
+          "name": "utility_application_id_idx",
+          "columns": [
+            "application_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "utility_applications_application_id_applications_id_fk": {
+          "name": "utility_applications_application_id_applications_id_fk",
+          "tableFrom": "utility_applications",
+          "tableTo": "applications",
+          "columnsFrom": [
+            "application_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "utility_applications_utility_company_id_utility_companies_id_fk": {
+          "name": "utility_applications_utility_company_id_utility_companies_id_fk",
+          "tableFrom": "utility_applications",
+          "tableTo": "utility_companies",
+          "columnsFrom": [
+            "utility_company_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "utility_companies": {
+      "name": "utility_companies",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "both_commission_pay": {
+          "name": "both_commission_pay",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "both_commission_receive": {
+          "name": "both_commission_receive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "electric_commission_pay": {
+          "name": "electric_commission_pay",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "electric_commission_receive": {
+          "name": "electric_commission_receive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gas_commission_pay": {
+          "name": "gas_commission_pay",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gas_commission_receive": {
+          "name": "gas_commission_receive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "wifi_applications": {
+      "name": "wifi_applications",
+      "schema": "",
+      "columns": {
+        "application_id": {
+          "name": "application_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "contact_day_of_weeks": {
+          "name": "contact_day_of_weeks",
+          "type": "contact_day_of_weeks",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visa_front_url": {
+          "name": "visa_front_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visa_back_url": {
+          "name": "visa_back_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visa_name": {
+          "name": "visa_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visa_exp_date": {
+          "name": "visa_exp_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "wifi_application_status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'not_handle'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "wifi_application_id_idx": {
+          "name": "wifi_application_id_idx",
+          "columns": [
+            "application_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "wifi_applications_application_id_applications_id_fk": {
+          "name": "wifi_applications_application_id_applications_id_fk",
+          "tableFrom": "wifi_applications",
+          "tableTo": "applications",
+          "columnsFrom": [
+            "application_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "billings": {
+      "name": "billings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "gas_count": {
+          "name": "gas_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "electric_count": {
+          "name": "electric_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "both_count": {
+          "name": "both_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "month": {
+          "name": "month",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "billings_agency_id_agencies_id_fk": {
+          "name": "billings_agency_id_agencies_id_fk",
+          "tableFrom": "billings",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "billings_id_unique": {
+          "name": "billings_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "unique_agency_monthly_billing": {
+          "name": "unique_agency_monthly_billing",
+          "nullsNotDistinct": false,
+          "columns": [
+            "agency_id",
+            "month"
+          ]
+        }
+      }
+    },
+    "earnings": {
+      "name": "earnings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "gas_count": {
+          "name": "gas_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "electric_count": {
+          "name": "electric_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "both_count": {
+          "name": "both_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "agency_id": {
+          "name": "agency_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "month": {
+          "name": "month",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "amount": {
+          "name": "amount",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "earnings_agency_id_agencies_id_fk": {
+          "name": "earnings_agency_id_agencies_id_fk",
+          "tableFrom": "earnings",
+          "tableTo": "agencies",
+          "columnsFrom": [
+            "agency_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "earnings_id_unique": {
+          "name": "earnings_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "unique_agency_monthly_earning": {
+          "name": "unique_agency_monthly_earning",
+          "nullsNotDistinct": false,
+          "columns": [
+            "agency_id",
+            "month"
+          ]
+        }
+      }
+    },
+    "gtn_members": {
+      "name": "gtn_members",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "department": {
+          "name": "department",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "logs": {
+      "name": "logs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "action": {
+          "name": "action",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sub_system": {
+          "name": "sub_system",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_email": {
+          "name": "user_email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "object": {
+          "name": "object",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "data": {
+          "name": "data",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ip_address": {
+          "name": "ip_address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent": {
+          "name": "user_agent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "user_tokens": {
+      "name": "user_tokens",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "agency_account_id": {
+          "name": "agency_account_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "site_code": {
+          "name": "site_code",
+          "type": "site",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token": {
+          "name": "token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expired_at": {
+          "name": "expired_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "login_at": {
+          "name": "login_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "user_tokens_agency_account_id_agency_accounts_id_fk": {
+          "name": "user_tokens_agency_account_id_agency_accounts_id_fk",
+          "tableFrom": "user_tokens",
+          "tableTo": "agency_accounts",
+          "columnsFrom": [
+            "agency_account_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "bank_classification": {
+      "name": "bank_classification",
+      "values": {
+        "savings": "savings",
+        "checking": "checking",
+        "deposit": "deposit"
+      }
+    },
+    "contact_day_of_weeks": {
+      "name": "contact_day_of_weeks",
+      "values": {
+        "monday": "monday",
+        "tuesday": "tuesday",
+        "wednesday": "wednesday",
+        "thursday": "thursday",
+        "friday": "friday",
+        "saturday": "saturday",
+        "sunday": "sunday"
+      }
+    },
+    "correspondence_destination_type": {
+      "name": "correspondence_destination_type",
+      "values": {
+        "affiliate": "affiliate",
+        "mobile": "mobile",
+        "credit_card": "credit_card",
+        "agency": "agency",
+        "utility_company": "utility_company"
+      }
+    },
+    "credit_card_application_status": {
+      "name": "credit_card_application_status",
+      "values": {
+        "service_not_required": "service_not_required",
+        "not_handle": "not_handle",
+        "in_progress": "in_progress",
+        "informed_url_sent": "informed_url_sent",
+        "informed_cannot_guide": "informed_cannot_guide",
+        "informed_gtn_service_not_used": "informed_gtn_service_not_used",
+        "informed_no_reply": "informed_no_reply",
+        "informed_duplicate_application": "informed_duplicate_application",
+        "spam_post": "spam_post",
+        "passed_to_another_department": "passed_to_another_department",
+        "issued": "issued",
+        "issue_declined": "issue_declined",
+        "issue_cancelled": "issue_cancelled",
+        "other": "other",
+        "application_cancelled": "application_cancelled"
+      }
+    },
+    "gas_start_time_type": {
+      "name": "gas_start_time_type",
+      "values": {
+        "9am-12pm": "9am-12pm",
+        "1pm-3pm": "1pm-3pm",
+        "3pm-5pm": "3pm-5pm",
+        "5pm-7pm": "5pm-7pm"
+      }
+    },
+    "language": {
+      "name": "language",
+      "values": {
+        "japanese": "japanese",
+        "vietnamese": "vietnamese",
+        "chinese": "chinese",
+        "english": "english",
+        "korean": "korean",
+        "taiwan": "taiwan"
+      }
+    },
+    "prefecture": {
+      "name": "prefecture",
+      "values": {
+        "北海道": "北海道",
+        "青森県": "青森県",
+        "岩手県": "岩手県",
+        "宮城県": "宮城県",
+        "秋田県": "秋田県",
+        "山形県": "山形県",
+        "福島県": "福島県",
+        "茨城県": "茨城県",
+        "栃木県": "栃木県",
+        "群馬県": "群馬県",
+        "埼玉県": "埼玉県",
+        "千葉県": "千葉県",
+        "東京都": "東京都",
+        "神奈川県": "神奈川県",
+        "新潟県": "新潟県",
+        "富山県": "富山県",
+        "石川県": "石川県",
+        "福井県": "福井県",
+        "山梨県": "山梨県",
+        "長野県": "長野県",
+        "岐阜県": "岐阜県",
+        "静岡県": "静岡県",
+        "愛知県": "愛知県",
+        "三重県": "三重県",
+        "滋賀県": "滋賀県",
+        "京都府": "京都府",
+        "大阪府": "大阪府",
+        "兵庫県": "兵庫県",
+        "奈良県": "奈良県",
+        "和歌山県": "和歌山県",
+        "鳥取県": "鳥取県",
+        "島根県": "島根県",
+        "岡山県": "岡山県",
+        "広島県": "広島県",
+        "山口県": "山口県",
+        "徳島県": "徳島県",
+        "香川県": "香川県",
+        "愛媛県": "愛媛県",
+        "高知県": "高知県",
+        "福岡県": "福岡県",
+        "佐賀県": "佐賀県",
+        "長崎県": "長崎県",
+        "熊本県": "熊本県",
+        "大分県": "大分県",
+        "宮崎県": "宮崎県",
+        "鹿児島県": "鹿児島県",
+        "沖縄県": "沖縄県"
+      }
+    },
+    "service_type": {
+      "name": "service_type",
+      "values": {
+        "wifi": "wifi",
+        "utility": "utility",
+        "credit_card": "credit_card"
+      }
+    },
+    "site": {
+      "name": "site",
+      "values": {
+        "gtn_admin": "gtn_admin",
+        "agency": "agency",
+        "utilities": "utilities"
+      }
+    },
+    "utility_application_status": {
+      "name": "utility_application_status",
+      "values": {
+        "service_not_required": "service_not_required",
+        "not_handle": "not_handle",
+        "agreement_email_sent_not_agreed": "agreement_email_sent_not_agreed",
+        "agreement_email_sent_failed": "agreement_email_sent_failed",
+        "application_form_completed": "application_form_completed",
+        "application_form_failed": "application_form_failed",
+        "contracted_before_activation": "contracted_before_activation",
+        "contracted_activated": "contracted_activated",
+        "other": "other",
+        "application_cancelled": "application_cancelled"
+      }
+    },
+    "utility_contract_type": {
+      "name": "utility_contract_type",
+      "values": {
+        "electric": "electric",
+        "water_supply": "water_supply",
+        "gas": "gas",
+        "no_contract": "no_contract"
+      }
+    },
+    "utility_type": {
+      "name": "utility_type",
+      "values": {
+        "both": "both",
+        "electric": "electric",
+        "gas": "gas"
+      }
+    },
+    "visa_category": {
+      "name": "visa_category",
+      "values": {
+        "留学": "留学",
+        "人文知識・国際業務": "人文知識・国際業務",
+        "技能実習": "技能実習",
+        "特定活動": "特定活動",
+        "永住者": "永住者",
+        "定住者": "定住者",
+        "家族滞在": "家族滞在",
+        "特定技能": "特定技能",
+        "技能": "技能",
+        "企業内転勤": "企業内転勤",
+        "技術": "技術",
+        "文化活動": "文化活動",
+        "日本人の配偶者等": "日本人の配偶者等",
+        "永住者の配偶者等": "永住者の配偶者等",
+        "教授": "教授",
+        "教育": "教育",
+        "高度専門職": "高度専門職",
+        "介護": "介護",
+        "興行": "興行",
+        "宗教": "宗教",
+        "投資・経営": "投資・経営",
+        "短期滞在": "短期滞在",
+        "公用": "公用",
+        "研修": "研修",
+        "研究": "研究",
+        "外交": "外交",
+        "報道": "報道",
+        "芸術": "芸術",
+        "その他": "その他"
+      }
+    },
+    "wifi_application_status": {
+      "name": "wifi_application_status",
+      "values": {
+        "service_not_required": "service_not_required",
+        "not_handle": "not_handle",
+        "application_form_completed": "application_form_completed",
+        "application_form_failed": "application_form_failed",
+        "no_address_on_residence_card": "no_address_on_residence_card",
+        "handled": "handled",
+        "contracted_before_activation": "contracted_before_activation",
+        "contracted_activated": "contracted_activated",
+        "other": "other",
+        "application_cancelled": "application_cancelled"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

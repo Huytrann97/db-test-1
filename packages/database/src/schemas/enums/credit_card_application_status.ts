@@ -1,0 +1,37 @@
+import { pgEnum } from "drizzle-orm/pg-core";
+
+export const credit_card_application_status = pgEnum(
+  "credit_card_application_status",
+  [
+    // "0.サービス不要",
+    // "1.未対応",
+    // "2.対応中",
+    // "3.案内済み - URL送付済み",
+    // "4.案内済み - 案内不可",
+    // "5.案内済み - GTNサービス未使用",
+    // "6.案内済み - 返信なし",
+    // "7.案内済み - 重複申込",
+    // "8.迷惑投稿",
+    // "9.他部署パス",
+    // "10.発行済み",
+    // "11.発行謝絶",
+    // "12.発行取り消し",
+    // "13.その他",
+    // "14.申込取り消し",
+    "service_not_required",
+    "not_handle",
+    "in_progress",
+    "informed_url_sent",
+    "informed_cannot_guide",
+    "informed_gtn_service_not_used",
+    "informed_no_reply",
+    "informed_duplicate_application",
+    "spam_post",
+    "passed_to_another_department",
+    "issued",
+    "issue_declined",
+    "issue_cancelled",
+    "other",
+    "application_cancelled",
+  ]
+);
