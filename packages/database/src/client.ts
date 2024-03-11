@@ -6,7 +6,7 @@ import * as gtnInCharge from "@/schemas/agencies/gtn_in_charges";
 import * as applicant from "@/schemas/applicants";
 import * as address from "@/schemas/applicants/addresses";
 
-import * as application from "@/schemas/applications";
+import * as application from "@/schemas/user";
 import * as correspondence from "@/schemas/applications/correspondences";
 import * as creditCardApplication from "@/schemas/applications/credit_card_applications";
 import * as utilityApplication from "@/schemas/applications/utility_applications";

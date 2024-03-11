@@ -32,7 +32,7 @@ export * from "@/schemas/applicants";
 //applications
 export * from "@/schemas/applications/correspondences";
 export * from "@/schemas/applications/credit_card_applications";
-export * from "@/schemas/applications";
+export * from "@/schemas/user";
 export * from "@/schemas/applications/utility_applications";
 export * from "@/schemas/applications/utility_companies";
 export * from "@/schemas/applications/wifi_applications";

@@ -1,0 +1,1 @@
+ALTER TABLE "order_state" ADD COLUMN "order_number" text;
