@@ -1,9 +1,63 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "bddd584e-7ba0-4568-ae8d-bfb17ad917b4",
+  "id": "635095cc-b73a-447f-bf57-1df1d25ac297",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "note": {
+      "name": "note",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "order_number": {
+          "name": "order_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stage": {
+          "name": "stage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "order_detail": {
       "name": "order_detail",
       "schema": "",
@@ -40,6 +94,18 @@
         },
         "detail": {
           "name": "detail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "priority": {
+          "name": "priority",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -128,7 +194,15 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "order_detail_order_number_unique": {
+          "name": "order_detail_order_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "order_number"
+          ]
+        }
+      }
     },
     "order_state": {
       "name": "order_state",
@@ -140,8 +214,8 @@
           "primaryKey": true,
           "notNull": true
         },
-        "order": {
-          "name": "order",
+        "order_number": {
+          "name": "order_number",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -262,6 +336,12 @@
         },
         "approved_person": {
           "name": "approved_person",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_recieved": {
+          "name": "is_recieved",
           "type": "text",
           "primaryKey": false,
           "notNull": false

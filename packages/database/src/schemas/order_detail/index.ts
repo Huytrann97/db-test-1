@@ -8,6 +8,8 @@ export const order_detail = pgTable("order_detail", {
   user_id: text("user_id"),
   amount: text("amount"),
   detail: text("detail"),
+  note: text("note"),
+  priority: text('priority'),
   recieved_day: text("recieved_day"),
   material: text("material"),
   xlbm: text("xlbm"),

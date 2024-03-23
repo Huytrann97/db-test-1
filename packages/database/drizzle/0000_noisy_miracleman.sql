@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS "note" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"order_number" text,
+	"stage" text,
+	"state" text,
+	"note" text,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "order_detail" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"order_number" text,
@@ -5,6 +15,8 @@ CREATE TABLE IF NOT EXISTS "order_detail" (
 	"user_id" text,
 	"amount" text,
 	"detail" text,
+	"note" text,
+	"priority" text,
 	"recieved_day" text,
 	"material" text,
 	"xlbm" text,
@@ -17,12 +29,13 @@ CREATE TABLE IF NOT EXISTS "order_detail" (
 	"img_url" text,
 	"file_id" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL
+	"updated_at" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "order_detail_order_number_unique" UNIQUE("order_number")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "order_state" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"order" text,
+	"order_number" text,
 	"name" text,
 	"amount" text,
 	"stage" text,
@@ -43,6 +56,7 @@ CREATE TABLE IF NOT EXISTS "order_state" (
 	"confirmed_person3" text,
 	"in_confirmed" text,
 	"approved_person" text,
+	"is_recieved" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );

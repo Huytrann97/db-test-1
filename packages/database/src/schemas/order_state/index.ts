@@ -3,7 +3,7 @@ import { base_schema_columns } from "@/schemas/base_schemas";
 
 export const order_state = pgTable("order_state", {
   id: serial("id").primaryKey(),
-  order: text("order"),
+  order_number: text("order_number"),
   name: text("name"),
   amount: text("amount"),
   stage: text("stage"),
@@ -25,7 +25,6 @@ export const order_state = pgTable("order_state", {
   in_confirmed: text("in_confirmed"),
   approved_person: text("approved_person"),
   is_recieved: text('is_recieved'),
-  order_number: text("order_number"),
   ...base_schema_columns,
 });
 
